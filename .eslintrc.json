@@ -1,0 +1,42 @@
+{
+  "extends": "next/core-web-vitals",
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+      "rules": {
+        "prettier/prettier": [
+          "warn",
+          {
+            "endOfLine": "auto",
+            "printWidth": 80
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "indent": [
+          "warn",
+          2,
+          {
+            "SwitchCase": 1
+          }
+        ],
+        "quotes": ["warn", "single", { "avoidEscape": true }],
+        "curly": "warn",
+        "no-unused-vars": "warn",
+        "semi": "warn",
+        "eol-last": "warn"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "node_modules/",
+    ".next/",
+    "out/",
+    "public/",
+    "coverage/",
+    "jest.config.js",
+    "next.config.js",
+    "tailwind.config.js"
+  ]
+}
