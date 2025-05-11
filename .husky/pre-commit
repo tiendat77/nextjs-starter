@@ -1,6 +1,6 @@
 #/bin/bash
 
-npx --no-install lint-staged ||
+npx --yes --no-install lint-staged ||
 (
   echo "\n❌ Please check your code format! \n"
   false;

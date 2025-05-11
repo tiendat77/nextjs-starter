@@ -4,21 +4,7 @@ module.exports = {
     'type-enum': [
       2,
       'always',
-      [
-        'build',
-        'chore',
-        'ci',
-        'docs',
-        'feat',
-        'fix',
-        'wip',
-        'perf',
-        'refactor',
-        'revert',
-        'style',
-        'test',
-        'init',
-      ],
+      ['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'wip', 'perf', 'refactor', 'revert', 'style', 'test', 'init'],
     ],
   },
   prompt: {
@@ -118,8 +104,7 @@ module.exports = {
         description: 'Are there any breaking changes?',
       },
       breakingBody: {
-        description:
-          'A BREAKING CHANGE commit requires a body. Please enter a longer description of the commit itself',
+        description: 'A BREAKING CHANGE commit requires a body. Please enter a longer description of the commit itself',
       },
       breaking: {
         description: 'Describe the breaking changes',

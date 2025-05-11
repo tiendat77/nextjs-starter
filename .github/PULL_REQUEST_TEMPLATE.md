@@ -18,6 +18,7 @@ manual approval.
 -->
 
 ## What type of PR is this? (check all applicable)
+
 Please check the type of change your PR introduces:
 
 - [ ] ♻️ Refactor
@@ -27,13 +28,13 @@ Please check the type of change your PR introduces:
 - [ ] 📝 Documentation Update
 
 ## PR Checklist
+
 Please check if your PR fulfills the following requirements:
 
 - [ ] 🚨 The commit message follows our guidelines: https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines
 - [ ] 📐 The code has been formatted with Prettier
 - [ ] 🧪 Tests for the changes have been added (for bug fixes / features)
 - [ ] 📝 Docs have been added / updated (for bug fixes / features)
-
 
 ## Description
 

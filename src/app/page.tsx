@@ -1,12 +1,11 @@
-import React from 'react';
-import Image from 'next/image';
 import { Metadata } from 'next';
+import Image from 'next/image';
 
 /**
  * Metadata
  */
 export const metadata: Metadata = {
-  title: 'Trang Chủ | Nextjs Starter',
+  title: 'Home Page | Nextjs Starter',
 };
 
 /**

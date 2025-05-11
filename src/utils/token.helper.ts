@@ -1,4 +1,4 @@
-import { UserModel } from '@/models';
+import { UserModel } from '@/libs/api/models';
 
 export class TokenHelper {
   // -----------------------------------------------------------------------------------------------------
@@ -11,7 +11,7 @@ export class TokenHelper {
     }
 
     try {
-      const decoded: any = this._decodeToken(token);
+      const decoded: Record<string, any> = this._decodeToken(token);
 
       if (!decoded) {
         return null;
@@ -19,13 +19,13 @@ export class TokenHelper {
 
       const user: Partial<UserModel> = {};
 
-      user['id'] = decoded['id'] ?? '';
-      user['email'] = decoded['email'] ?? '';
-      user['name'] = decoded['name'] ?? '';
-      user['avatar'] = decoded['avatar'] || null;
+      user.id = decoded['id'] ?? '';
+      user.email = decoded['email'] ?? '';
+      user.name = decoded['name'] ?? '';
+      user.avatar = decoded['avatar'] || null;
 
       return user;
-    } catch (error) {
+    } catch {
       return null;
     }
   }
@@ -54,22 +54,18 @@ export class TokenHelper {
   // -----------------------------------------------------------------------------------------------------
 
   private static _b64decode(str: string): string {
-    const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     let output = '';
 
     str = String(str).replace(/=+$/, '');
 
     if (str.length % 4 === 1) {
-      throw new Error(
-        "'atob' failed: The string to be decoded is not correctly encoded."
-      );
+      throw new Error("'atob' failed: The string to be decoded is not correctly encoded.");
     }
 
-    /* eslint-disable */
     for (
       // initialize result and counters
-      let bc = 0, bs: any, buffer: any, idx = 0;
+      let bc = 0, bs: number, buffer: number | string, idx = 0;
       // get next character
       (buffer = str.charAt(idx++));
       // character found in table? initialize bit storage and add its ascii value;
@@ -84,18 +80,14 @@ export class TokenHelper {
       // try to find character in table (0-63, not found => -1)
       buffer = chars.indexOf(buffer);
     }
-    /* eslint-enable */
 
     return output;
   }
 
-  private static _b64DecodeUnicode(str: any): string {
+  private static _b64DecodeUnicode(str: string): string {
     return decodeURIComponent(
       Array.prototype.map
-        .call(
-          this._b64decode(str),
-          (c: any) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-        )
+        .call(this._b64decode(str), (c: string) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
         .join('')
     );
   }
@@ -119,7 +111,7 @@ export class TokenHelper {
     return this._b64DecodeUnicode(output);
   }
 
-  private static _decodeToken(token: string): any {
+  private static _decodeToken(token: string): Record<string, any> {
     // Return if there is no token
     if (!token) {
       return null;
